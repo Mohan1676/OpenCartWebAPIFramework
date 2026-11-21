@@ -1,0 +1,44 @@
+To generate allure the steps needs to be followed
+1. npm install --save-dev allure-playwright allure-commandline
+
+2. reporter:[
+    ["list"],
+    ["html", {outputFolder: "reports/html-report", open:"never"}],
+    ["allure-playwright", {
+        outputFolder: "allure-results",
+        suiteTitle:true,
+    }],
+
+],
+
+update package.json
+"scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:chrome": "npx playwright test --project=chromium",
+    "allure:generate": "npx allure generate allure-results --clean -o allure-report",
+    "allure:open": "npx allure open allure-report",
+    "allure-report": "npm run allure:generate && npm run allure:open",
+    "allure:clean": "rm -rf allure-result allure-report"
+}
+
+execution commands: npm run test
+npx playwright test tests/login-page.spec.ts --headed --project='chromium'
+
+
+---------------------------
+
+Env set up:
+first install dotenv with the command npm install dotenv
+
+After that go to playwright.config file and import dotenv 
+
+import dotenv from 'dotenv'
+const ENV = process.env.ENV || "qa";
+console.log('Running test on environment: ', ENV);
+dotenv.config({path: `config/.env.${ENV}`});
+
+-----------------------
+
+For csv we have to download npm install csv-parse
+For excel we have to download npm install xlsx

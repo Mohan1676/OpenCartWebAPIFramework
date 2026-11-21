@@ -1,0 +1,123 @@
+npx playwright test tests/loginpage.spec.ts --project=chromium --headed
+1. Page layer
+What is Page object model?
+Page object model is a design pattern where we store the locator and methods(actions)
+All the locators we are going to create with private keyword. Private keyword means I don't want to 
+give the locator outside of this particular class otherwise any one can manipulate my locators. 
+So all the locator will be private in nature and all the actions/methods will be publicliy availiable and 
+these public methods that I'm going to create, they are going to use these private methods internally. 
+This concept is called classic example of encapulsation.
+
+2. Test layer: In this layer we will create our tests. In the test we need to create individual test files
+but page file we have to create class file. In this layer we will call methods to perform operations and 
+we will assert/validate. 
+
+3. Base page: Every page class/layer there will be one parent class, here we will write a common actions like 
+generic click() method or generic fill() method or text() of any specific element, scroll() method what ever some 
+common actions we are going to use it here.
+
+what is the difference between page layer and base class/layer?
+It means the page layer is the child of or every page is a child of base page. 
+So I can do one thing if all these methods which are availiable in the parent class direct inherit into this page layer.
+So simple inheritance we have to follow here.
+
+
+Note: encapulsation means private locators will be handled by the public page methods.
+
+4. Fixtures: So fixtures is the feature availiable in the playwright. Fixtures says you can crrate you own custom 
+fixtures. The fixture will help me to provide the page objects over here at the runtime automatically. This feature
+is not availiable in selenium or other automation tools. I can maintain the test data as well. 
+
+5. Test Data: It depends we can maintain in excel also, csv also in json format as well. 
+
+6. playwright.config.ts file: In simple words:
+
+playwright.config.ts is the main settings file for our Playwright project.
+
+It tells Playwright how we want our tests to run.
+
+For example, you can tell it:
+- 🌐 Which browser? → Chrome, Firefox, Safari
+- 📁 Where are my tests? → tests/
+- 🔗 Which application URL? → QA/Staging URL
+- 👀 Show browser or run hidden? → headless: false/true
+- 📸 Take screenshots?
+- 🎥 Record videos?
+- 🔄 Retry failed tests?
+- 📊 Which report to generate?
+- ⚡ Run tests in parallel?
+playwright.config.ts = Control panel of your Playwright framework.
+
+You configure the settings once, and all your tests use those settings.
+
+7. Environments: We will be having multiple environments like dev, qa, stage and production. 
+8. Utlities: 
+
+
+
+1. we have install playwright amd first we have to init 
+npm init -y
+2. To install playwright we have to use: npm init playwright@latest
+
+------------------------------------
+
+Difference between playwright.config.ts vs tsconfig.json
+     File	                                               Main purpose
+playwright.config.ts	                           Tells Playwright how to run your tests
+tsconfig.json	                                   Tells TypeScript how to understand/compile your code
+
+
+1. playwright.config.ts → Playwright settings
+Example:
+export default defineConfig({
+  testDir: './tests',
+
+  use: {
+    baseURL: 'https://qa.example.com',
+    headless: false,
+    screenshot: 'only-on-failure'
+  },
+
+  reporter: 'html'
+});
+
+It answers questions like:
+Where are my tests?
+Which browser should I use?
+Should I show the browser?
+Should I take screenshots?
+What URL should I test?
+What report should I generate?
+
+2. tsconfig.json → TypeScript settings
+Example:
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "strict": true,
+    "module": "NodeNext"
+  }
+}
+
+It answers questions like:
+Which JavaScript/TypeScript version should I use?
+How strict should TypeScript be?
+How should TypeScript handle modules?
+Which .ts files should be included?
+
+Easy way to remember
+Think about your Playwright project as a car 🚗:
+
+tsconfig.json
+
+→ Makes sure the engine understands the TypeScript code.
+
+playwright.config.ts
+
+→ Tells the car how and where to drive — browser, URL, screenshots, reports, retries, etc.
+
+
+-----------------------
+
+To install allure report:
+1. npm install --save-dev allure-playwright allure-commandline

@@ -1,0 +1,15 @@
+[
+  {
+    "username": "Test1@mailinator.com",
+    "password": "Test@123"
+  },
+
+  {
+    "username": "xyz@mailinator.com",
+    "password": "Test@123"
+  },
+  {
+    "username": "Test2@gmail.com",
+    "password": "Test@1234"
+  }
+]
