@@ -1,0 +1,1 @@
+console.log('Hi, just for demo page');
