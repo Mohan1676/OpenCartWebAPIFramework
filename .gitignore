@@ -10,6 +10,9 @@ node_modules/
 # env files (credentials)
 config/.env
 !config/.env.example
+config/.env.dev
+config/.env.qa
+config/.env.stage
 
 # reports
 reports/
